@@ -1,0 +1,173 @@
+/* =========================================
+   1. RESET Y CONFIGURACIÓN BASE
+   ========================================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%; /* Garantiza accesibilidad para zoom y rems */
+}
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: hsl(210, 15%, 20%);
+  background-color: hsl(210, 20%, 95%);
+}
+
+/* =========================================
+   2. VARIABLES CSS Y PALETA HSL
+   ========================================= */
+:root {
+  --color-primario: hsl(210, 70%, 50%);
+  --color-primario-claro: hsl(210, 70%, 75%);
+  --color-primario-oscuro: hsl(210, 70%, 30%);
+  --color-texto: hsl(210, 15%, 20%);
+  --color-fondo-tarjeta: hsl(0, 0%, 100%);
+}
+
+/* =========================================
+   3. INVESTIGACIÓN HSL (DOCUMENTACIÓN)
+   ========================================= */
+/* 
+ * INVESTIGACIÓN: ¿Qué es HSL y por qué usarlo?
+ * 
+ * 1. ¿Qué significa cada valor en hsl()?
+ *    - H (Hue / Tono): El matiz o color base representado en un círculo cromático de 0 a 360 grados (ej. 0 es rojo, 120 es verde, 240 es azul).
+ *    - S (Saturation / Saturación): La intensidad o pureza del color, desde 0% (gris/opaco) hasta 100% (color vivo y puro).
+ *    - L (Lightness / Luminosidad): La cantidad de luz, donde 0% es negro absoluto, 50% es el color normal, y 100% es blanco absoluto.
+ * 
+ * 2. ¿Por qué HSL puede ser más útil que HEX o RGB?
+ *    - Es mucho más intuitivo para humanos: Para hacer un color más claro o más oscuro, solo ajustas el tercer valor (Lightness) sin alterar la esencia del tono.
+ *    - Facilita la creación de paletas armónicas y temas manipulando matemáticamente los grados de tono o la luminosidad mediante variables.
+ * 
+ * 3. Ejemplo práctico: ¿Cuándo usarías HSL en un proyecto real?
+ *    - Al diseñar estados interactivos de botones (hover), donde necesitas que el mismo botón se vea ligeramente más oscuro al pasar el cursor cambiando únicamente el porcentaje de luminosidad.
+ */
+/* =========================================
+   4. HEADER CON FLEXBOX
+   ========================================= */
+.header {
+  background-color: var(--color-primario);
+  padding: 2.5rem 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.header-contenido {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.titulo-principal {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  color: hsl(0, 0%, 100%);
+}
+
+.descripcion {
+  font-size: 1.1rem;
+  color: var(--color-primario-claro);
+}
+/* =========================================
+   5. GALERÍA CON GRID Y TARJETAS
+   ========================================= */
+.contenedor {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem 3rem 1.5rem;
+}
+
+.galeria {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.foto-tarjeta {
+  background-color: var(--color-fondo-tarjeta);
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.foto-tarjeta img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  display: block;
+}
+
+.foto-info {
+  padding: 1.25rem;
+}
+
+.foto-titulo {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-texto);
+}
+
+.foto-descripcion {
+  font-size: 0.95rem;
+  color: hsl(210, 10%, 45%);
+  margin: 0;
+}
+
+/* Efecto hover en las tarjetas */
+.foto-tarjeta:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* =========================================
+   6. FOOTER
+   ========================================= */
+.footer {
+  background-color: var(--color-primario-oscuro);
+  color: hsl(0, 0%, 100%);
+  text-align: center;
+  padding: 1.5rem;
+  margin-top: 3rem;
+}
+
+/* =========================================
+   7. MEDIA QUERIES (RESPONSIVE)
+   ========================================= */
+
+/* Tablets: 2 columnas */
+@media (max-width: 768px) {
+  .galeria {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .titulo-principal {
+    font-size: 2rem;
+  }
+}
+
+/* Móviles: 1 columna */
+@media (max-width: 480px) {
+  .galeria {
+    grid-template-columns: 1fr;
+  }
+  
+  .titulo-principal {
+    font-size: 1.75rem;
+  }
+  
+  .contenedor {
+    padding: 0 1rem 2rem 1rem;
+  }
+}
